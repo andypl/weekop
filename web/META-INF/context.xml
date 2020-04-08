@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/weekop"
+              auth="Container"
+              type="javax.sql.DataSource"
+              initialSize="10"
+              maxTotal="100"
+              maxIdle="30"
+              maxWaitMillis="10000"
+              username="andy"
+              password="andy"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost:5432/weekop" />
+
+    <Realm
+            className="org.apache.catalina.realm.DataSourceRealm"
+            dataSourceName="jdbc/weekop"
+            userTable="users"
+            userNameCol="username"
+            userCredCol="password"
+            userRoleTable="user_role"
+            roleNameCol="role_name"
+            localDataSource="true" >
+
+        <CredentialHandler
+                className="org.apache.catalina.realm.MessageDigestCredentialHandler"
+                algorithm="MD5"
+                iterations="1"
+                saltLength="0"
+                encoding="ISO-8859-1" />
+    </Realm>
+</Context>
